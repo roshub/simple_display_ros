@@ -1,0 +1,33 @@
+<launch>
+  <arg name="port" default="4000" />
+  <arg name="address" default="" />
+  <arg name="ssl" default="false" />
+  <arg name="certfile" />
+  <arg name="keyfile" />
+  <arg name="authenticate" default="false" />
+  <param name="enable_statistics" type="bool" value="true"/>
+  
+  <group if="$(arg ssl)">
+    <node name="rosbridge_websocket" pkg="rosbridge_server" type="rosbridge_websocket" output="screen">
+      <param name="certfile" value="$(arg certfile)" />
+      <param name="keyfile" value="$(arg keyfile)" />
+      <param name="authenticate" value="$(arg authenticate)" />
+      <param name="port" value="$(arg port)"/>
+      -<param name="address" value="$(arg address)"/>
+    </node>
+  </group>
+  <group unless="$(arg ssl)">
+    <node name="rosbridge_websocket" pkg="rosbridge_server" type="rosbridge_websocket" output="screen">
+      <param name="authenticate" value="$(arg authenticate)" />
+      <param name="port" value="$(arg port)"/>
+      <param name="address" value="$(arg address)"/>
+    </node>
+  </group>
+
+  <node name="rosapi" pkg="rosapi" type="rosapi_node" />
+
+  <node name="simple_display" pkg="rosserial_python" type="serial_node.py">
+    <param name="port" value="/dev/ttyACM.mega" />
+    <param name="baud" value="115200" />
+  </node>
+</launch>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>simple_display_launch</name>
+  <version>0.0.1</version>
+  <description>The simple_display_launch package</description>
+  
+  <author>Alan Meekins</author>
+  <maintainer email="code@roshub.io">code@roshub</maintainer>
+  <license>MIT</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>roslaunch</run_depend>
+</package>

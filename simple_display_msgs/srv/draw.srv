@@ -1,0 +1,4 @@
+bool loop
+DrawCommand[] layers
+---
+bool success
